@@ -1,0 +1,28 @@
+﻿@model LabWork_pt2.DTO.Request.LoginRequestDto
+<html>
+    <head>
+        <link href="~/css/Login.css" type="text/css" rel="stylesheet" /> 
+        <title>Войти</title>
+    </head>
+    <body>
+        
+        <form class="form" method="post">
+        @Html.ValidationSummary(false)
+            <h1 class="form_title">Вход</h1>
+            
+            <div class="from_group">
+            <input class="form_input" id="UserName" name="UserName" placeholder=" " autocomplete="off" />
+                <label class="form_label">Имя пользователя</label>
+            </div>
+            <div class="from_group">
+                <br />
+            <input class="form_input" type="password" id="Password" name="Password" placeholder=" " autocomplete="off" />
+            <label class="form_label">Пароль</label>
+            </div>
+            <br /><br />
+            <button class="form_button">Войти</button>
+
+        </form>
+
+    </body>
+</html>

@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<LabWork_pt2.Entity.FileModel>;
+<html>
+    <head>
+        <link href="~/css/Service.css" type="text/css" rel="stylesheet" />
+        <title>Трекер</title>
+    </head>
+<body>
+    <form class="form_search" action="Search">
+        <p class="par_search">
+            Поиск по описанию: 
+            <input class="par_search" type="text" name="searchString" autocomplete="off" />
+            <input class="par_submit" type="submit" value="Поиск" />
+        </p>
+    </form>
+   
+
+    <h2>Список доступных файлов:</h2>
+    <table>
+        <tr>
+            <td>Имя файла </td>
+            <td>Описание </td>
+            <td>Ссылка на файл</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.FileDescription
+                </td>
+
+                <td>
+                    <form action="GetFile">
+                        <input type="hidden" name="fileId" value="@item.Id">
+                        <input class="form_input" type="submit" value="Скачать файл">
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <form class="form_logout" action="Logout">
+        <input class="input_submit" type="submit" value="Выйти" />
+    </form>
+</body>
+</html>

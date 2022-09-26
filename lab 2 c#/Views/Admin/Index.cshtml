@@ -1,0 +1,76 @@
+﻿@model IEnumerable<LabWork_pt2.Entity.FileModel>
+<html>
+    <head>
+    <link href="~/css/Service.css" type="text/css" rel="stylesheet" />
+        <title>
+        Страница администратора
+        </title>
+    </head>
+    
+    <body>
+    <form class="addFile_form" action="AddFile" method="post" enctype="multipart/form-data">
+        <input class ="par_submit" type="file" name="uploadedFile" /> <br />
+        <label class="label">Описание файла</label><br />
+        <input class="par_search" type="text" name="fileDescription" autocomplete="off" />
+        <input class ="par_submit" type="submit" value="Загрузить" />
+    </form>
+
+    <form class="form_search" action="Search">
+        <p class="par_search">
+            Поиск по описанию:
+            <input class="par_search" type="text" name="searchString" autocomplete="off" />
+            <input class="par_submit" type="submit" value="Поиск" />
+        </p>
+    </form>
+
+ 
+    <h2>Список доступных файлов:</h2>
+    <table>
+        <tr>
+            <td>Имя файла </td>
+            <td>Описание </td>
+            <td>Количество скачиваний </td>
+            <td> Ссылка на файл</td>
+            <td> </td>
+            <td>Новое описание</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.FileDescription
+                </td>
+                <td>
+                    @item.downloadedCounter
+                </td>
+                <td>
+                    <form action="GetFile">
+                        <input type="hidden" name="fileId" value="@item.Id">
+                        <input type="submit" value="Скачать файл">
+                    </form>
+                </td>
+                <td>
+                    <form action="DeleteFile">
+                        <input type="hidden" name="filename" value="@item.Name">
+                        <input type="submit" value="Удалить файл" formmethod="post">
+                    </form>
+                </td>
+                <td>
+                    <form action="ChangeDiscription" method="post">
+                        <input type="text" name="newFileDescription" autocomplete="off">
+                        <input type="hidden" name="id" value="@item.Id">
+                        <input type="submit" value="Изменить">
+                    </form>
+                </td>
+            </tr>
+
+        }
+    </table>
+    <form class="form_logout" action="Logout">
+        <input class="input_submit" type="submit" value="Выйти" />
+    </form>
+</body>
+</html>
